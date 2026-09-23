@@ -11,7 +11,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 data class HomeUiState(
@@ -22,6 +24,7 @@ data class HomeUiState(
     val isLoading: Boolean = false
 )
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class HomeViewModel(
     private val jobRepository: JobRepository
 ) : ViewModel() {
@@ -29,11 +32,17 @@ class HomeViewModel(
     private val _selectedQuickFilter = MutableStateFlow("All")
     val selectedQuickFilter: StateFlow<String> = _selectedQuickFilter.asStateFlow()
 
-    private val _quickFilterJobFilter = MutableStateFlow(JobFilter())
-
     val uiState: StateFlow<HomeUiState> = combine(
         jobRepository.getFeaturedJobs(),
-        jobRepository.getJobs(_quickFilterJobFilter.value),
+        _selectedQuickFilter.flatMapLatest { filterName ->
+            jobRepository.getJobs(when (filterName) {
+                "Remote" -> JobFilter(isRemoteOnly = true)
+                "Colombo" -> JobFilter(location = "Colombo")
+                "IT & Software" -> JobFilter(category = "IT & Software")
+                "Internships" -> JobFilter(category = "Internships")
+                else -> JobFilter()
+            })
+        },
         jobRepository.getSavedJobs(),
         _selectedQuickFilter
     ) { featured, filteredLatest, saved, quickFilter ->
@@ -52,19 +61,6 @@ class HomeViewModel(
 
     fun onQuickFilterSelect(filterName: String) {
         _selectedQuickFilter.value = filterName
-        val newFilter = when (filterName) {
-            "Remote" -> JobFilter(isRemoteOnly = true)
-            "Colombo" -> JobFilter(location = "Colombo")
-            "IT & Software" -> JobFilter(category = "IT & Software")
-            "Internships" -> JobFilter(category = "Internships")
-            else -> JobFilter()
-        }
-        _quickFilterJobFilter.value = newFilter
-        viewModelScope.launch {
-            jobRepository.getJobs(newFilter).collect { jobs ->
-                // Handled reactively
-            }
-        }
     }
 
     fun toggleSaveJob(jobId: String) {
@@ -83,3 +79,4 @@ class HomeViewModel(
             }
     }
 }
+

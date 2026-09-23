@@ -97,7 +97,7 @@ fun SavedJobsScreen(
                 contentPadding = PaddingValues(bottom = 24.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                items(savedJobs, key = { it.id }) { job ->
+                items(savedJobs, key = { it.id }, contentType = { "job" }) { job ->
                     JobCard(
                         job = job,
                         onJobClick = onJobClick,
@@ -108,3 +108,4 @@ fun SavedJobsScreen(
         }
     }
 }
+

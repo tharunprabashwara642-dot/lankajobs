@@ -66,7 +66,7 @@ fun FeaturedJobCard(
             brush = Brush.linearGradient(
                 listOf(
                     SkyPrimary.copy(alpha = 0.6f),
-                    Color(0xFF3B82F6).copy(alpha = 0.3f),
+                    Color(0xFF74BFA6).copy(alpha = 0.5f),
                     DarkBorder
                 )
             )
@@ -88,7 +88,7 @@ fun FeaturedJobCard(
                         .clip(RoundedCornerShape(10.dp))
                         .background(
                             Brush.linearGradient(
-                                listOf(Color(0xFF0369A1), Color(0xFF0284C7))
+                                listOf(Color(0xFF087E68), Color(0xFF3A9A77))
                             )
                         ),
                     contentAlignment = Alignment.Center
@@ -204,3 +204,4 @@ fun FeaturedJobCard(
         }
     }
 }
+

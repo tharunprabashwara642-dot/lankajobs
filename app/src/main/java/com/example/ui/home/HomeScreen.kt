@@ -401,7 +401,7 @@ fun HomeScreen(
                 )
             }
         } else {
-            items(uiState.latestJobs, key = { it.id }) { job ->
+            items(uiState.latestJobs, key = { it.id }, contentType = { "job" }) { job ->
                 Box(modifier = Modifier.padding(horizontal = 20.dp, vertical = 6.dp)) {
                     JobCard(
                         job = job,
@@ -413,3 +413,4 @@ fun HomeScreen(
         }
     }
 }
+

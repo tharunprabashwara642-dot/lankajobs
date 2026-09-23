@@ -1,13 +1,13 @@
 package com.example.ui.theme
 
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme = darkColorScheme(
+private val LankaJobsColorScheme = lightColorScheme(
     primary = SkyPrimary,
-    onPrimary = Color(0xFF003549),
+    onPrimary = Color.White,
     primaryContainer = SkyPrimaryContainer,
     onPrimaryContainer = OnSkyPrimaryContainer,
     secondary = EmeraldSecondary,
@@ -37,7 +37,7 @@ fun LankaJobsTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colorScheme = DarkColorScheme,
+        colorScheme = LankaJobsColorScheme,
         typography = Typography,
         content = content
     )
@@ -52,3 +52,4 @@ fun MyApplicationTheme(
 ) {
     LankaJobsTheme(content = content)
 }
+

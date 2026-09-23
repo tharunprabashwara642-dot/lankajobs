@@ -290,7 +290,7 @@ fun SearchScreen(
                     contentPadding = PaddingValues(bottom = 24.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(results, key = { it.id }) { job ->
+                    items(results, key = { it.id }, contentType = { "job" }) { job ->
                         JobCard(
                             job = job,
                             onJobClick = onJobClick,
@@ -313,3 +313,4 @@ fun SearchScreen(
         }
     }
 }
+

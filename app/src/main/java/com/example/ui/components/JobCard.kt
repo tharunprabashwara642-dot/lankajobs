@@ -82,9 +82,9 @@ fun JobCard(
             ) {
                 // Company Avatar / Initials
                 val avatarGradient = if (job.isFeatured) {
-                    listOf(Color(0xFF0284C7), Color(0xFF0369A1))
+                    listOf(Color(0xFF087E68), Color(0xFF3A9A77))
                 } else {
-                    listOf(Color(0xFF1E293B), Color(0xFF334155))
+                    listOf(Color(0xFF677B70), Color(0xFF829187))
                 }
 
                 Box(
@@ -217,3 +217,4 @@ fun JobCard(
         }
     }
 }
+
