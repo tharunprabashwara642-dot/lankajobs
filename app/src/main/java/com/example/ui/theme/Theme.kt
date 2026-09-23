@@ -52,4 +52,3 @@ fun MyApplicationTheme(
 ) {
     LankaJobsTheme(content = content)
 }
-

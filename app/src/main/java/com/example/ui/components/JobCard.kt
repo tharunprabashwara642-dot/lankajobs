@@ -217,4 +217,3 @@ fun JobCard(
         }
     }
 }
-
