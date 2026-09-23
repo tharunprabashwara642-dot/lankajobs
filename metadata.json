@@ -1,0 +1,6 @@
+{
+  "name": "LankaJobs",
+  "description": "Sri Lankan Job Discovery Platform - Discover, filter, and apply for verified careers across Sri Lanka",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
